@@ -227,32 +227,7 @@ SELECT *
 FROM PercentPopulationVaccinated3333;
 
 
-
-
-
-
-
 -- Creating View to store data for visualizations later
--- Create the view
-CREATE VIEW VaccinationDataView1 AS
-SELECT *
-FROM PercentPopulationVaccinated3333;
-
-
-
-
-create view PercentPopulationVaccinated3333 as
-select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
-, SUM(CONVERT(float, vac.new_vaccinations)) OVER (Partition By dea.location Order by dea.location, dea.date) as Rollingpeoplevaccinated
-, SUM(CONVERT(float, vac.new_vaccinations)) OVER (Partition By dea.location Order by dea.location, dea.date) as Rollingpeoplevaccinated
---, (Rollingpeoplevaccinated/population)*100
-FROM PortfolioProject1..COVIDDEATHSa dea
-JOIN PortfolioProject1..COVIDVACCINATIONSa vac
-	ON dea.location = vac.location
-    AND dea.date = vac.date
-WHERE dea.continent!= ''
---Order by 2,3
-
 
 CREATE VIEW PercentPopulationVaccinated1 AS
 SELECT
